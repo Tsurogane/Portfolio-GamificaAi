@@ -1,13 +1,38 @@
-import { Actor, Color, Engine, Scene, vec } from "excalibur";
+import { Actor, Color, Engine, FadeInOut, Keys, Scene, SceneActivationContext, Transition, vec } from "excalibur";
 import { Resources } from "../resources";
 
 export class gamificationScene extends Scene {
-    elementoHTML?: HTMLElement
+	elementoHTML?: HTMLElement
 
-    onInitialize(engine: Engine<any>): void {
-        this.backgroundColor = Color.fromHex("#403f4c")
+	fadeOutElement(elemento: HTMLElement) {
+		let opacidade = parseFloat(elemento.style.opacity)
 
-        this.elementoHTML = document.createElement("div") as HTMLElement
+		setInterval(() => {
+
+
+			
+			if (opacidade > 0) {
+			
+				opacidade -= 0.01
+				
+				elemento.style.opacity = opacidade.toString()
+			}
+		}, 20)
+
+	}
+
+	onTransition(direction: "in" | "out"): Transition | undefined {
+		return new FadeInOut({
+			direction: direction,
+			color: Color.Black,
+				duration: 1000	
+			})
+		}
+
+	onInitialize(engine: Engine<any>): void {
+		this.backgroundColor = Color.fromHex("#403f4c")
+
+		this.elementoHTML = document.createElement("div") as HTMLElement
 
 		this.elementoHTML.style.opacity = "1"
 
@@ -22,9 +47,9 @@ export class gamificationScene extends Scene {
           níveis, recompensas, desafios, e feedback imediato, visando promover comportamentos desejados e aumentar a
           participação e o comprometimento dos participantes.</p>`
 
-        this.elementoHTML.classList.add("gamificacao")
+		this.elementoHTML.classList.add("gamificacao")
 
-          let actorLogo = new Actor ({
+		let actorLogo = new Actor({
 			pos: vec(250, 450),
 		})
 
@@ -39,5 +64,19 @@ export class gamificationScene extends Scene {
 
 		// Adicionando actor logo na tela
 		this.add(actorLogo)
-    }
+
+
+		this.input.keyboard.on("press", (event) => {
+			// Caso a tecla pressionada for "Enter", deve ir para proxima cena
+			if (event.key == Keys.Enter) {
+				this.fadeOutElement(this.elementoHTML!)
+				// Direcioanr para cena historia
+				engine.goToScene("exposicao")
+			}
+		})
+	}
+
+	onDeactivate(context: SceneActivationContext<undefined>): void {
+		this.elementoHTML?.remove()
+	}
 }

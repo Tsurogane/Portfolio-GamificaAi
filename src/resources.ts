@@ -29,7 +29,7 @@ export const Resources = {
   Mapa: new TiledResource(tmxMapaPath, {
     pathMap: [
       { path: "showroom_map.tmx", output: tmxMapaPath },
-      { path: "Room_Builder_32x32.png", output: pngTilesetPath },
+      { path: "Room_Builder_32x32.png", output: pngTilesetPath }, 
       { path: "tileset_paredes", output: tsxParedesPath },
       { path: "tileset_generic", output: tsxGenericPath },
       { path: "tileset_basement", output: tsxBasementPath },

@@ -7,6 +7,9 @@ import playerSpritePath from "./sprites/player.png"
 import npcASpritePath from "./sprites/npc_a.png"
 import npcBSpritePath from "./sprites/npc_b.png"
 import npcCSpritePath from "./sprites/NPC_C.png"
+import npcImageA from "./images/atendenteA.png"
+import npcImageB from "./images/atendenteB.png"
+import npcImageC from "./images/atendenteC.png"
 
 
 
@@ -26,6 +29,9 @@ export const Resources = {
   logo2: new ImageSource(logo2),
   gamificacao: new ImageSource(gamificacao),
   playerSpriteSheet: new ImageSource(playerSpritePath, {filtering: ImageFiltering.Pixel}),
+  npcImageA: new ImageSource(npcImageA),
+  npcImageB: new ImageSource(npcImageB),
+  npcImageC: new ImageSource(npcImageC),
   Mapa: new TiledResource(tmxMapaPath, {
     pathMap: [
       { path: "showroom_map.tmx", output: tmxMapaPath },

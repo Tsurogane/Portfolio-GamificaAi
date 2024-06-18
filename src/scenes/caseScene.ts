@@ -1,4 +1,5 @@
-import { Color, Engine, FadeInOut, Scene, SceneActivationContext, Transition } from "excalibur";
+import { Actor, Color, Engine, FadeInOut, Scene, SceneActivationContext, Transition, vec } from "excalibur";
+import { Resources } from "../resources";
 
 export class caseScene extends Scene {
     private objetoIntercao: any
@@ -32,10 +33,24 @@ export class caseScene extends Scene {
 		this.elementoTexto.classList.add("sobre-gamifica")
 
 		// Adicionar titulo e paragrafo dentro do conteudo da div
-		this.elementoTexto.innerHTML = `<h2>Escola hoje em dia</h2>
-        <p>Estou ficando louco me ajude, a cada like mais perto da sanidade ferrada estarei </p>`
+		this.elementoTexto.innerHTML = `<h2>Case 1</h2>
+        <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrada </p>`
 
+
+
+        let actorNpc = new Actor ({
+            pos: vec(engine.drawWidth / 1.3, 110),
+        })
+
+        let npcImageA = Resources.npcImageA.toSprite()
+        
+        npcImageA.scale = vec(1.3, 1.3)
+	
+		actorNpc.graphics.add(npcImageA)
+	
+		this.add(actorNpc)
         }
+        
 
         // Renderizar um texto diferente para cada case 
         // renderizar imagen idle
@@ -48,19 +63,18 @@ export class caseScene extends Scene {
             console.log(this.objetoIntercao);
 
             if (this.objetoIntercao.nomeDoActor == "mesa_stand_a") {
-                this.textoDaCena = "Essa é a descricao do case A"
+                this.textoDaCena =  `<h2>Case 1</h2>
+                <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrada </p>`
+                
 
             }
             if (this.objetoIntercao.nomeDoActor == "mesa_stand_b") {
-                this.textoDaCena = "Essa é a descricao do case B"
+                this.textoDaCena =  `<h2>Case 1</h2>
+                <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrsadsdsaada </p>`
             }
             if (this.objetoIntercao.nomeDoActor == "mesa_stand_c") {
-                this.textoDaCena = "Essa é a descricao do case C"
-            }
-
-
-
-
-            
+                this.textoDaCena =  `<h2>Case 1</h2>
+                <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrada 23 </p>`
+            }           
         }
 }

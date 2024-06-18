@@ -1,4 +1,4 @@
-import { ImageFiltering, ImageSource, Loader } from "excalibur";
+import { ImageFiltering, ImageSource, Loader, Sound } from "excalibur";
 import sword from "./images/sword.png";
 import logo from "./images/logo.png";
 import logo2 from "./images/logo-vertical.png";
@@ -10,6 +10,9 @@ import npcCSpritePath from "./sprites/NPC_C.png"
 import npcImageA from "./images/atendenteA.png"
 import npcImageB from "./images/atendenteB.png"
 import npcImageC from "./images/atendenteC.png"
+
+import ritmada from "./Sounds/ritmada_zelda.mp3"
+import classico from "./Sounds/zelda.mp3"
 
 
 
@@ -32,6 +35,8 @@ export const Resources = {
   npcImageA: new ImageSource(npcImageA),
   npcImageB: new ImageSource(npcImageB),
   npcImageC: new ImageSource(npcImageC),
+  RitmadaBGM: new Sound(ritmada),
+  ClassicBGM: new Sound(classico),
   Mapa: new TiledResource(tmxMapaPath, {
     pathMap: [
       { path: "showroom_map.tmx", output: tmxMapaPath },

@@ -1,4 +1,4 @@
-import { Actor, Color, Engine, FadeInOut, Scene, SceneActivationContext, Transition, vec } from "excalibur";
+import { Actor, Color, Engine, FadeInOut, Keys, Scene, SceneActivationContext, Sprite, Transition, vec } from "excalibur";
 import { Resources } from "../resources";
 
 export class caseScene extends Scene {
@@ -6,7 +6,11 @@ export class caseScene extends Scene {
 
     private textoDaCena: string = ""
 
-    elementoTexto?: HTMLElement;
+    private elementoTexto?: HTMLElement;
+
+    private npcImage?: Actor
+
+    private listaImages?: Sprite []
 
     onTransition(direction: "in" | "out"): Transition | undefined {
 		return new FadeInOut({
@@ -21,34 +25,30 @@ export class caseScene extends Scene {
 
             		// Criar elemento com drescrição da empresa
 		this.elementoTexto = document.createElement("div") as HTMLElement
+		this.elementoTexto.classList.add("texto-case")
 
-		//vDefinir a Opacidade do elemento para 1 = visual
-		this.elementoTexto.style.opacity = "1"
-
-		// Inserir o elementoTexto no cantainer-game
 		let containerGame = document.querySelector(".container-game") as HTMLElement
 		containerGame.appendChild(this.elementoTexto)
 
-		// Adicionar classe na div criada
-		this.elementoTexto.classList.add("sobre-gamifica")
 
-		// Adicionar titulo e paragrafo dentro do conteudo da div
-		this.elementoTexto.innerHTML = `<h2>Case 1</h2>
-        <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrada </p>`
+        this.input.keyboard.on("press", (event) => {
+            if (event.key == Keys.Esc) {
+                engine.goToScene("exposicao")
+            }
+        })
 
-
-
-        let actorNpc = new Actor ({
-            pos: vec(engine.drawWidth / 1.3, 110),
+        this.npcImage = new Actor ({
+            pos: vec(engine.drawWidth - 300, engine.halfDrawHeight - 50)
         })
 
         let npcImageA = Resources.npcImageA.toSprite()
-        
-        npcImageA.scale = vec(1.3, 1.3)
-	
-		actorNpc.graphics.add(npcImageA)
-	
-		this.add(actorNpc)
+        let npcImageB = Resources.npcImageB.toSprite()
+        let npcImageC = Resources.npcImageC.toSprite()
+
+        this.listaImages = [npcImageA, npcImageB, npcImageC]
+
+        // this.elementoTexto.innerHTML = this.textoDaCena
+
         }
         
 
@@ -57,24 +57,34 @@ export class caseScene extends Scene {
 
 
         onActivate(context: SceneActivationContext<unknown>): void {
+            this.elementoTexto!.style.opacity = "1"
+
             //  Pegar dados vindos da cena passada
             this.objetoIntercao = context.data
 
             console.log(this.objetoIntercao);
 
             if (this.objetoIntercao.nomeDoActor == "mesa_stand_a") {
-                this.textoDaCena =  `<h2>Case 1</h2>
-                <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrada </p>`
+                this.elementoTexto!.innerHTML =  `<h2> KLT </h2>
+                <p> KLT uma empressa que busca revolucionar o mercado de alimento </p>`
                 
-
+                this.npcImage?.graphics.add(this.listaImages![0])
+                
             }
             if (this.objetoIntercao.nomeDoActor == "mesa_stand_b") {
-                this.textoDaCena =  `<h2>Case 1</h2>
-                <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrsadsdsaada </p>`
+                this.elementoTexto!.innerHTML =  `<h2>FGD</h2>
+                <p> Estao atualmneto atuando como empresa de venda de moveis</p>`
+                this.npcImage?.graphics.add(this.listaImages![1])
             }
             if (this.objetoIntercao.nomeDoActor == "mesa_stand_c") {
-                this.textoDaCena =  `<h2>Case 1</h2>
-                <p>Estou ficando louco me ajude, a cada dia estou mais perto da sanidade ferrada 23 </p>`
-            }           
+                this.elementoTexto!.innerHTML =  `<h2>Case 3</h2>
+                <p> esta fazendo venda de carros </p>`
+                this.npcImage?.graphics.add(this.listaImages![2])
+            }       
+            this.add(this.npcImage!)    
+        }
+
+        onDeactivate(context: SceneActivationContext<undefined>): void {
+            this.elementoTexto!.style.opacity = "0"
         }
 }

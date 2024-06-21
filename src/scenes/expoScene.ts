@@ -15,14 +15,14 @@ export class expoScene extends Scene {
 
     onInitialize(engine: Engine<any>): void {
 		// Ativar o mode de debug
-		engine.toggleDebug() 
+		// engine.toggleDebug() 
 
 		// Carregar musica de fundo (BGM Background Music)
 		let musicaFundo = Resources.RitmadaBGM
 
 		// Configurar a muscia e executar
 		musicaFundo.loop = true
-		// musicaFundo.play(0.7)
+		musicaFundo.play(0.7)
 
 		// Carregar o mapa
 		let tileMap = Resources.Mapa
@@ -65,24 +65,25 @@ export class expoScene extends Scene {
 
 		let npcA = new Npc(
 			vec(npcSpawnPointA.x + offsetX, npcSpawnPointA.y + offsetY),
-			Color.Blue,
-			"NpcA"
+			npcSpawnPointA.tiledObject.name!
 		)
 
 		let npcB = new Npc(
 			vec(npcSpawnPointB.x + offsetX, npcSpawnPointB.y + offsetY),
-			Color.Red,
-			"NpcB"
+			npcSpawnPointB.tiledObject.name!
 		)
 
 		let npcC = new Npc(
 			vec(npcSpawnPointC.x + offsetX, npcSpawnPointC.y + offsetY),
-			Color.Violet,
-			"NpcC"
+			npcSpawnPointC.tiledObject.name!
 		)
+		// Adicionando Npcs
+		this.add(npcA)
+		this.add(npcB)
+		this.add(npcC)
 
-		// Adicionar colisao com cada objeto
-		// Pegar a camada de objetos colisores
+		// Adicionar colisao com cada objeto,  //Pegar a camada de objetos colisores
+
 		let camadaObjetosColisores = tileMap.getObjectLayers("ObjetosColisores")[0]
 
 		// Percorrer os objetos com foreach e para cada objeto, renderizar um actor
@@ -98,10 +99,6 @@ export class expoScene extends Scene {
 
 			// Adicionar o colisor do objeto na cena
 			this.add(objetoAtual)
-
-			this.add(npcA)
-			this.add(npcB)
-			this.add(npcC)
 		})
     }
     

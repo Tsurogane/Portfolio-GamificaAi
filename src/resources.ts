@@ -4,12 +4,12 @@ import logo from "./images/logo.png";
 import logo2 from "./images/logo-vertical.png";
 import gamificacao from "./images/gamificacao.png";
 import playerSpritePath from "./sprites/player.png"
-import npcASpritePath from "./sprites/npc_a.png"
-import npcBSpritePath from "./sprites/npc_b.png"
-import npcCSpritePath from "./sprites/NPC_C.png"
-import npcImageA from "./images/atendenteA.png"
-import npcImageB from "./images/atendenteB.png"
-import npcImageC from "./images/atendenteC.png"
+import npcASpriteSheet from "./sprites/npc_a.png"
+import npcBSpriteSheet from "./sprites/npc_b.png"
+import npcCSpriteSheet from "./sprites/NPC_C.png"
+import npcImageA from "./images/Case1.png"
+import npcImageB from "./images/Case2.png"
+import npcImageC from "./images/Case3.png"
 
 import ritmada from "./Sounds/ritmada_zelda.mp3"
 import classico from "./Sounds/zelda.mp3"
@@ -32,9 +32,12 @@ export const Resources = {
   logo2: new ImageSource(logo2),
   gamificacao: new ImageSource(gamificacao),
   playerSpriteSheet: new ImageSource(playerSpritePath, {filtering: ImageFiltering.Pixel}),
-  npcImageA: new ImageSource(npcImageA),
-  npcImageB: new ImageSource(npcImageB),
-  npcImageC: new ImageSource(npcImageC),
+  npcASpriteSheet: new ImageSource(npcASpriteSheet, {filtering: ImageFiltering.Pixel}),
+  npcBSpriteSheet: new ImageSource(npcBSpriteSheet, {filtering: ImageFiltering.Pixel}),
+  npcCSpriteSheet: new ImageSource(npcCSpriteSheet, {filtering: ImageFiltering.Pixel}),
+  npcA: new ImageSource(npcImageA),
+  npcB: new ImageSource(npcImageB),
+  npcC: new ImageSource(npcImageC),
   RitmadaBGM: new Sound(ritmada),
   ClassicBGM: new Sound(classico),
   Mapa: new TiledResource(tmxMapaPath, {

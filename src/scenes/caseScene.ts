@@ -41,9 +41,9 @@ export class caseScene extends Scene {
             pos: vec(engine.drawWidth - 300, engine.halfDrawHeight - 50)
         })
 
-        let npcImageA = Resources.npcImageA.toSprite()
-        let npcImageB = Resources.npcImageB.toSprite()
-        let npcImageC = Resources.npcImageC.toSprite()
+        let npcImageA = Resources.npcA.toSprite()
+        let npcImageB = Resources.npcB.toSprite()
+        let npcImageC = Resources.npcC.toSprite()
 
         this.listaImages = [npcImageA, npcImageB, npcImageC]
 
